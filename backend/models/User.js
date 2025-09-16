@@ -11,12 +11,17 @@ const User = sequelize.define("User", {
     type: DataTypes.ENUM("Actor", "Singer", "Musician"), 
     allowNull: false 
   },
-  profilePic: { type: DataTypes.STRING },      // path to uploaded profile picture
-  idPhotoFront: { type: DataTypes.STRING },    // path to uploaded front ID
-  idPhotoBack: { type: DataTypes.STRING },     // path to uploaded back ID
+  profilePic: { type: DataTypes.STRING },
+  idPhotoFront: { type: DataTypes.STRING },
+  idPhotoBack: { type: DataTypes.STRING },
+
+  // NEW fields for password reset
+  resetCode: { type: DataTypes.STRING },
+  resetCodeExpiry: { type: DataTypes.DATE }
 }, {
-  timestamps: true,   // same as Mongoose { timestamps: true }
+  timestamps: true,
 });
+
 
 // Optional: helper methods for full image URLs
 User.prototype.getProfilePicUrl = function() {
